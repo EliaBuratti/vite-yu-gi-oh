@@ -30,11 +30,11 @@ export default {
             </div>
 
             <!-- list cards -->
-            <div class="bg-white p-4">
+            <div v-if="cardsData.cards" class="bg-white p-4">
                 <div class="list_cards">
 
                     <!-- result number of card  -->
-                    <div v-if="cardsData.cards" class="found_cards mx-2 p-3">
+                    <div class="found_cards mx-2 p-3">
                         <h5>Found: {{ cardsData.cards.length }} cards</h5>
                     </div>
 
@@ -53,6 +53,12 @@ export default {
                 </div>
 
             </div>
+            <div v-else class="loading text-center">
+                <img src="https://img.yugioh-card.com/eu/wp-content/themes/yugioh/images/logo/Yugioh-EN-DE.svg"
+                    alt="logo yu gi oh">
+
+                <h3>Caricamento...</h3>
+            </div>
         </div>
 
     </section>
@@ -64,6 +70,18 @@ export default {
 
 .cards {
     background-color: $bg-page;
+
+    .loading {
+        margin: auto;
+        width: 80vw;
+        height: 100vh;
+        background-color: $bg-page;
+
+        img {
+            transform: scale(1);
+            animation: pulse 2s infinite;
+        }
+    }
 
     .filter select {
         padding: 0.5rem 4rem 0.5rem 0.5rem;
@@ -91,6 +109,20 @@ export default {
                 font-size: 1.5rem;
             }
         }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.95);
     }
 }
 </style>
