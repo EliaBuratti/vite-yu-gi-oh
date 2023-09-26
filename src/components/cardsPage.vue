@@ -34,13 +34,13 @@ export default {
                 <div class="list_cards">
 
                     <!-- result number of card  -->
-                    <div class="found_cards p-3">
-                        <h5>Found 39 cards</h5>
+                    <div v-if="cardsData.cards" class="found_cards mx-2 p-3">
+                        <h5>Found: {{ cardsData.cards.length }} cards</h5>
                     </div>
 
                     <!-- album cards -->
                     <div class="album_cards d-flex flex-wrap">
-                        <div v-for="card in cardsData.cards" class="card rounded-0 mb-4 col-3">
+                        <div v-for="card in cardsData.cards" class="card rounded-0 border-0 mb-4 p-2">
                             <img :src="card.card_images[0].image_url" :alt="card.name">
 
                             <div class="description text-center">
@@ -76,6 +76,7 @@ export default {
     }
 
     .card {
+        width: calc(100% / 5);
 
         .description {
             height: 100%;

@@ -7,8 +7,6 @@ import axios from 'axios';
 export const cardsData = reactive({
     base_url: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=10&offset=0',
     cards: null,
-    /*     name: null,
-        archetype: null, */
 
     getData() {
         axios.get(this.base_url)
@@ -20,8 +18,6 @@ export const cardsData = reactive({
 
                 this.cards = path;
 
-                /*                 this.name = path.name;
-                                this.archetype = path.archetype; */
             })
 
             .catch(error => {
