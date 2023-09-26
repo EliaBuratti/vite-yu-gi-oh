@@ -1,0 +1,8 @@
+@use '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+@use '../scss/partials/variables.scss' as *;
+
+
+body {
+    background-color: $bg-page;
+}
