@@ -1,24 +1,26 @@
 <script>
+import { cardsData } from '../assets/dataJs/cardsData.js'; //importo il file js con i dati dell'api
+
 export default {
     name: 'cardsPage',
 
     data() {
         return {
-
+            cardsData
         }
     },
 
-    methods: {
-
+    created() {
+        cardsData.getData();
     }
 }
 </script>
 
 <template>
-    <section class="cards pt-4">
+    <section class="cards">
         <div class="container p-4">
             <!-- filter -->
-            <div class="filter">
+            <div class="filter pb-4">
                 <select name="archetype" id="archetype">
                     <option value="esempio1">esempio1</option>
                     <option value="esempio2">esempio2</option>
@@ -37,7 +39,15 @@ export default {
                     </div>
 
                     <!-- album cards -->
-                    <div class="album_cards">
+                    <div class="album_cards d-flex flex-wrap">
+                        <div v-for="card in cardsData.cards" class="card rounded-0 mb-4 col-3">
+                            <img :src="card.card_images[0].image_url" :alt="card.name">
+
+                            <div class="description text-center">
+                                <h4>{{ card.name }}</h4>
+                                <p>{{ card.archetype }}</p>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -63,6 +73,23 @@ export default {
     .found_cards {
         background-color: $bg-filter;
         color: $white;
+    }
+
+    .card {
+
+        .description {
+            height: 100%;
+            background-color: $bg-page;
+            padding: 1rem 0.5rem;
+
+            h4 {
+                color: $white;
+            }
+
+            p {
+                font-size: 1.5rem;
+            }
+        }
     }
 }
 </style>
