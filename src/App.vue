@@ -1,12 +1,13 @@
 <script>
 import navBar from './components/navBar.vue';
-
+import cardsPage from './components/cardsPage.vue';
 export default {
 
   name: 'App',
 
   components: {
     navBar,
+    cardsPage,
   },
 
   data() {
@@ -19,6 +20,7 @@ export default {
 
 <template>
   <navBar />
+  <cardsPage />
 </template>
 
 <style lang="scss" scoped>
