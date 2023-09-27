@@ -31,6 +31,7 @@ export default {
     <div class="filter pb-4">
         <select name="archetype-list" id="archetype-list" @change="$emit('searchFilter')"
             v-model="cardsData.archetypeSelected">
+            <option value="" disabled selected>Select Archetype</option>
             <archetype v-for="filter in filterLists.listsArchetype" :type="filter.archetype_name" />
         </select>
     </div>
