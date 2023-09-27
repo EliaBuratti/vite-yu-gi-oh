@@ -19,10 +19,19 @@ export default {
 </script>
 
 <template>
-  <navBar />
-  <cardsPage />
+  <div class="app">
+    <navBar />
+    <cardsPage />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @use './assets/scss/app.scss' as *;
+@use './assets/scss/partials/variables.scss' as *;
+
+
+.app {
+  background-color: $bg-page;
+  height: 100vh;
+}
 </style>
