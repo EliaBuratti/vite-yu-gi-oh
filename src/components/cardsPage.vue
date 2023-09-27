@@ -15,13 +15,13 @@ export default {
 
     data() {
         return {
-            cardsData
+            cardsData,
         }
     },
 
     methods: {
         searchArcherype() {
-            const archetypeFIlterUrl = this.cardsData.base_url + `?archetype=${this.cardsData.archetypeSelected}`;
+            const archetypeFIlterUrl = this.cardsData.base_url + `?archetype=${this.cardsData.archetypeSelected}&num=${this.cardsData.limit}&offset=${this.cardsData.offset}`;
             console.log(archetypeFIlterUrl);
             this.cardsData.getData(archetypeFIlterUrl);
         }
@@ -29,7 +29,7 @@ export default {
 
 
     created() {
-        cardsData.getData(this.cardsData.base_url);
+        cardsData.getData(this.cardsData.base_url + `?num=${this.cardsData.limit}&offset=${this.cardsData.offset}`);
     }
 }
 </script>
