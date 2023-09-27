@@ -20,16 +20,15 @@ export default {
     },
 
     methods: {
-        searchArcherype() {
-            const archetypeFIlterUrl = this.cardsData.base_url + `?archetype=${this.cardsData.archetypeSelected}&num=${this.cardsData.limit}&offset=${this.cardsData.offset}`;
-            console.log(archetypeFIlterUrl);
-            this.cardsData.getData(archetypeFIlterUrl);
+        searchArchetype() {
+            console.log(this.cardsData.archetypeSelected);
+            this.cardsData.getData();
         }
     },
 
 
     created() {
-        cardsData.getData(this.cardsData.base_url + `?num=${this.cardsData.limit}&offset=${this.cardsData.offset}`);
+        cardsData.getData();
     }
 }
 </script>
@@ -39,7 +38,7 @@ export default {
         <div class="container p-4">
 
             <!-- menu filtri -->
-            <filterArchetype @search-Filter="searchArcherype" />
+            <filterArchetype @search-Filter="searchArchetype" />
 
             <!-- list cards -->
             <div v-if="cardsData.cards" class="bg-white p-4">

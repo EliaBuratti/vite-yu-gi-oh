@@ -9,11 +9,20 @@ export const cardsData = reactive({
     limit: 20,
     offset: 0,
     cards: null,
-    archetypeSelected: '',
+    archetypeSelected: null,
 
 
-    getData(url) {
-        axios.get(url)
+    getData() {
+        axios.get(this.base_url, {
+            params: {
+
+                archetype: this.archetypeSelected,
+
+                offset: this.offset,
+
+                num: this.limit,
+            }
+        })
 
             .then(response => {
                 console.log(response.data.data);
