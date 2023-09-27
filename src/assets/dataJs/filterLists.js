@@ -4,20 +4,18 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 
-export const cardsData = reactive({
-    base_url: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
-    cards: null,
-
+export const filterLists = reactive({
+    base_url: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
+    listsArchetype: null,
+    archetypeSelected: '',
 
     getData() {
         axios.get(this.base_url)
 
             .then(response => {
-                console.log(response.data.data);
+                console.log(response.data);
 
-                const path = response.data.data;
-
-                this.cards = path;
+                this.listsArchetype = response.data;
 
             })
 

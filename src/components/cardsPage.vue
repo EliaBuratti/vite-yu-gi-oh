@@ -1,12 +1,14 @@
 <script>
 import { cardsData } from '../assets/dataJs/cardsData.js'; //importo il file js con i dati dell'api
 import singleCard from './singleCard.vue';
+import filterArchetype from './filterArchetype.vue';
 
 export default {
     name: 'cardsPage',
 
     components: {
         singleCard,
+        filterArchetype,
     },
 
     data() {
@@ -14,6 +16,13 @@ export default {
             cardsData
         }
     },
+
+    methods: {
+        searchArcherype() {
+            console.log('sto cercando...');
+        }
+    },
+
 
     created() {
         cardsData.getData();
@@ -24,16 +33,8 @@ export default {
 <template>
     <section class="cards">
         <div class="container p-4">
-            <!-- filter -->
-            <div class="filter pb-4">
-                <select name="archetype" id="archetype">
-                    <option value="esempio1">esempio1</option>
-                    <option value="esempio2">esempio2</option>
-                    <option value="esempio3">esempio3</option>
-                    <option value="esempio4">esempio4</option>
-                </select>
-            </div>
 
+            <filterArchetype @search-Filter="searchArcherype" />
 
             <!-- list cards -->
             <div v-if="cardsData.cards" class="bg-white p-4">
@@ -77,11 +78,6 @@ export default {
             transform: scale(1);
             animation: pulse 2s infinite;
         }
-    }
-
-    .filter select {
-        padding: 0.5rem 4rem 0.5rem 0.5rem;
-        border-radius: 0.5rem;
     }
 
     .found_cards {
