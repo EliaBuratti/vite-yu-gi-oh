@@ -2,6 +2,7 @@
 import { cardsData } from '../assets/dataJs/cardsData.js'; //importo il file js con i dati dell'api
 import singleCard from './singleCard.vue';
 import filterArchetype from './filterArchetype.vue';
+import counterCardFound from './counterCardFound.vue';
 
 export default {
     name: 'cardsPage',
@@ -9,6 +10,7 @@ export default {
     components: {
         singleCard,
         filterArchetype,
+        counterCardFound,
     },
 
     data() {
@@ -36,22 +38,24 @@ export default {
     <section class="cards">
         <div class="container p-4">
 
+            <!-- menu filtri -->
             <filterArchetype @search-Filter="searchArcherype" />
 
             <!-- list cards -->
             <div v-if="cardsData.cards" class="bg-white p-4">
 
-                <!-- result number of card  -->
-                <div class="found_cards mx-2 p-3">
-                    <h5>Found: {{ cardsData.cards.length }} cards</h5>
-                </div>
+                <!-- contatore -->
+                <counterCardFound />
 
                 <!-- album cards -->
                 <div class="album_cards d-flex flex-wrap">
                     <singleCard v-for="card in cardsData.cards" :cardImage="card.card_images[0].image_url"
                         :cardTitle="card.name" :cardArchetype="card.archetype" :cardFound="cardsData.cards.length" />
                 </div>
+
             </div>
+
+            <!-- loading page -->
             <div v-else class="loading text-center">
                 <img src="https://img.yugioh-card.com/eu/wp-content/themes/yugioh/images/logo/Yugioh-EN-DE.svg"
                     alt="logo yu gi oh">
@@ -82,10 +86,7 @@ export default {
         }
     }
 
-    .found_cards {
-        background-color: $bg-filter;
-        color: $white;
-    }
+
 }
 
 @keyframes pulse {
