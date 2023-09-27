@@ -1,8 +1,13 @@
 <script>
 import { cardsData } from '../assets/dataJs/cardsData.js'; //importo il file js con i dati dell'api
+import singleCard from './singleCard.vue';
 
 export default {
     name: 'cardsPage',
+
+    components: {
+        singleCard,
+    },
 
     data() {
         return {
@@ -29,29 +34,20 @@ export default {
                 </select>
             </div>
 
+
             <!-- list cards -->
             <div v-if="cardsData.cards" class="bg-white p-4">
-                <div class="list_cards">
 
-                    <!-- result number of card  -->
-                    <div class="found_cards mx-2 p-3">
-                        <h5>Found: {{ cardsData.cards.length }} cards</h5>
-                    </div>
-
-                    <!-- album cards -->
-                    <div class="album_cards d-flex flex-wrap">
-                        <div v-for="card in cardsData.cards" class="card rounded-0 border-0 mb-4 p-2">
-                            <img :src="card.card_images[0].image_url" :alt="card.name">
-
-                            <div class="description text-center">
-                                <h4>{{ card.name }}</h4>
-                                <p>{{ card.archetype }}</p>
-                            </div>
-                        </div>
-
-                    </div>
+                <!-- result number of card  -->
+                <div class="found_cards mx-2 p-3">
+                    <h5>Found: {{ cardsData.cards.length }} cards</h5>
                 </div>
 
+                <!-- album cards -->
+                <div class="album_cards d-flex flex-wrap">
+                    <singleCard v-for="card in cardsData.cards" :cardImage="card.card_images[0].image_url"
+                        :cardTitle="card.name" :cardArchetype="card.archetype" :cardFound="cardsData.cards.length" />
+                </div>
             </div>
             <div v-else class="loading text-center">
                 <img src="https://img.yugioh-card.com/eu/wp-content/themes/yugioh/images/logo/Yugioh-EN-DE.svg"
@@ -91,24 +87,6 @@ export default {
     .found_cards {
         background-color: $bg-filter;
         color: $white;
-    }
-
-    .card {
-        width: calc(100% / 5);
-
-        .description {
-            height: 100%;
-            background-color: $bg-page;
-            padding: 1rem 0.5rem;
-
-            h4 {
-                color: $white;
-            }
-
-            p {
-                font-size: 1.5rem;
-            }
-        }
     }
 }
 
