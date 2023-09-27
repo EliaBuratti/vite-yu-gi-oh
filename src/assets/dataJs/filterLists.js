@@ -7,13 +7,12 @@ import axios from 'axios';
 export const filterLists = reactive({
     base_url: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
     listsArchetype: null,
-    archetypeSelected: '',
 
     getData() {
         axios.get(this.base_url)
 
             .then(response => {
-                console.log(response.data);
+                //console.log(response.data);
 
                 this.listsArchetype = response.data;
 

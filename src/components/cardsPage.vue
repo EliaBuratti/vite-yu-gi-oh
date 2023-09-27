@@ -19,13 +19,15 @@ export default {
 
     methods: {
         searchArcherype() {
-            console.log('sto cercando...');
+            const archetypeFIlterUrl = this.cardsData.base_url + `?archetype=${this.cardsData.archetypeSelected}`;
+            console.log(archetypeFIlterUrl);
+            this.cardsData.getData(archetypeFIlterUrl);
         }
     },
 
 
     created() {
-        cardsData.getData();
+        cardsData.getData(this.cardsData.base_url);
     }
 }
 </script>
