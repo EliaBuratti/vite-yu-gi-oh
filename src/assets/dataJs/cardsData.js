@@ -8,8 +8,8 @@ export const cardsData = reactive({
     base_url: 'https://db.ygoprodeck.com/api/v7/cardinfo.php', // se tolgo il num e offset genero il massimo delle carte  
     limit: 20,
     offset: 0,
-    cards: null,
-    archetypeSelected: null,
+    cards: [],
+    archetypeSelected: [],  // se metto una stringa vuota mi appare il testo nel menu a tendina con null invece no
 
 
     getData() {
